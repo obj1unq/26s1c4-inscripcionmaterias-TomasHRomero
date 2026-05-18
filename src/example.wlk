@@ -1,55 +1,43 @@
 
 // Juan.aprobar(objetos1, nota)
 class Estudiante {
-	var materiasAprobadas = #{}
 
-	method aprobar( materia, nota ) {
-		if(  self.estáAprobada(materia))
-			self.error("ya aprobó la materia")
-	}   else {
+    const materiasAprobadas = #{}
 
-			materiasAprobadas.add(materia)
-	}
+    method aprobar(materia, nota) {
 
+        if (self.estáAprobada(materia)) {
+            self.error("ya aprobó la materia")
+        } else {
 
-	method estáAprobada() {
-		
-	}
-} 
+            materiasAprobadas.add(
+                new MateriaAprobada(
+                    materia = materia,
+                    nota = nota
+                )
+            )
+        }
+    }
 
+    method estáAprobada(materia) {
 
+        return materiasAprobadas.any {
+            aprobacion => aprobacion.corresponde(materia)
+        }
+    }
+}
 
-/*	materiasAprobadas.add(
-		new MateriaAprobada(
-			materia = materia,
-			nota = nota
-		)
-	)
-*/
-object materiasAprobadas {
-	const materia = null
-	const nota = 0
+class MateriaAprobada {
 
-	method materia(_materia) {
-		materia = _materia
-	}
+	var property materia 
+	var property nota 
 
-	method materia() {
-		return materia
-	}
-
-	method nota(_nota) {
-		nota = _nota
-	}
-
-	method nota() {
-		return nota
-	}	
+	method corresponde( unaMateria ) = materia == unaMateria	
 
 }
 
-object materia {
-	
+class Materia {
+	var property nombre 
 }
 
 object carrera {
