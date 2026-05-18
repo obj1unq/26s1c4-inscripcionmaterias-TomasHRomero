@@ -4,9 +4,9 @@ class Estudiante {
 
     const materiasAprobadas = #{}
 
-    method aprobar(materia, nota) {
+    method aprobar( materia, nota ) {
 
-        if (self.estáAprobada(materia)) {
+        if (self.estáAprobada( materia )) {
             self.error("ya aprobó la materia")
         } else {
 
@@ -19,12 +19,17 @@ class Estudiante {
         }
     }
 
-    method estáAprobada(materia) {
+    method estáAprobada( materia ) {
 
         return materiasAprobadas.any {
-            aprobacion => aprobacion.corresponde(materia)
+            aprobacion => aprobacion.corresponde( materia )
         }
     }
+	
+	method cantidadDeMateriasAprobadas() = materiasAprobadas.size()
+
+
+
 }
 
 class MateriaAprobada {
