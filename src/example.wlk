@@ -6,8 +6,8 @@ class Estudiante {
 
     method aprobar( materia, nota ) {
 
-        if (self.estáAprobada( materia )) {
-            self.error("ya aprobó la materia")
+        if ( self.estáAprobada( materia ) ) {
+             self.error( "ya aprobó la materia" )
         } else {
 
             materiasAprobadas.add(
@@ -25,10 +25,11 @@ class Estudiante {
             aprobacion => aprobacion.corresponde( materia )
         }
     }
-	
+
 	method cantidadDeMateriasAprobadas() = materiasAprobadas.size()
 
-
+	method promedio() =  materiasAprobadas.map{ aprobación => aprobación.nota() }.sum() 
+						 / self.cantidadDeMateriasAprobadas()
 
 }
 
